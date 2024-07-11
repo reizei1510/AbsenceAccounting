@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учет отсутствия сотрудников</title>
+</head>
+<body>
+    <div class="content">
+        <h2>Учет отсутствия сотрудников</h2>
+        <br />
+        <button id="add-record">Добавить запись об отсутствии</button>
+        <br /><br />
+        <div id="record-form-container">
+            <input type="hidden" id="save-record-method" name="save-record-method" />
+            <span id="close-record-form">&times;</span>
+            <h3><span id="form-title"></span></h3><br />
+
+            <form id="record-form" action="/api/records/" method="POST">
+                <label for="recordId">Идентификатор:</label>
+                <input type="text" id="recordId" name="recordId" required readonly />
+                <br /><br />
+                <label for="employee">Сотрудник:</label>
+                <select id="employee" name="employee" required></select>
+                <br /><br />
+                <label for="reason">Причина отсутствия:</label>
+                <select id="reason" name="reason" required>
+                    <option value="1" checked>Отпуск</option>
+                    <option value="2">Больничный</option>
+                    <option value="3">Прогул</option>
+                </select>
+                <br /><br />
+                <label for="start">Дата начала:</label>
+                <input type="date" id="start" name="start" required />
+                <br /><br />
+                <label for="duration">Продолжительность (раб. дней):</label>
+                <input type="number" id="duration" name="duration" min="1" required />
+                <br /><br />
+                <label for="taken">Учтено при оплате:</label>
+                <input type="checkbox" id="taken" name="taken" />
+                <br /><br />
+                <label for="comment">Комментарий:</label><br>
+                <textarea id="comment" name="comment" rows="3" required></textarea>
+                <br /><br /><br />
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+
+        <div id="records-table-container">
+            <table id="records-table">
+                <thead>
+                    <tr>
+                        <th>Идентификатор</th>
+                        <th>Сотрудник</th>
+                        <th>Причина отсутствия</th>
+                        <th>Дата начала</th>
+                        <th>Продолжительность (раб. дней)</th>
+                        <th>Учтено при оплате</th>
+                        <th>Комментарий</th>
+                        <th colspan="2">Модифицировать</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/recordForm.js"></script>
+    <script type="module" src="../scripts/records.js"></script>
+</body>
+</html>
